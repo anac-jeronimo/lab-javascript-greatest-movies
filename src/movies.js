@@ -21,6 +21,18 @@ let ratesAverage = (movies) => {
         return 0;
     }
 
+    /* let reduceSum = movies.reduce((accumulator, currentValue) => {
+        if(!currentValue.rate === 0) {
+            currentValue.rate = 0;
+        }
+        return accumulator + currentValue.rate;
+    }, 0);
+
+
+    let avg = reduceSum / movies.length;
+    return Number(avg.toFixed(2)); */
+
+
     let totalSum = 0 ; 
     movies.forEach((movie) => {
         if (!movie.rate) {
@@ -30,16 +42,47 @@ let ratesAverage = (movies) => {
     }); 
     let average = totalSum / movies.length;
     return Number(average.toFixed(2)); //rounds up to decimals
-}
+} 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 let dramaMoviesRate = (movies) => {
-
-}
+   let dramaMovies = movies.filter(movie => movie.genre.includes("Drama"));
+        return ratesAverage(dramaMovies);
+    };
+    
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
+let orderByYear = (movies) => {
+    let orderedMovies = movies.sort((movie1, movie2) => {
+        if (movie1.year === movie2.year) {
+            if(movie1.tittle > movie2.tittle) {
+                return 1; 
+            } else {
+                return -1;
+            }
+        } else {
+            if(movie1.year > movie2.year) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+    });
+    //spred operator
+    return [...orderedMovies];
+}
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
+let orderAlphabetically = (movies) => {
+ let orderedArray = [...movies].sort((movie1, movie2) => {
+     if (movie1.tittle > movie2.tittle) {
+         return 1;
+     } else {
+         return -1;
+     }
+ }).slice(0, 20); {
+     return orderedArray.map(movie => movie.title);
+ }
+}; 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+ 
